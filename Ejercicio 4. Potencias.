@@ -1,0 +1,69 @@
+program potencias;
+uses crt;
+Var
+	n:integer;
+Type
+	indef = array[1..5000] of Integer;
+	arr = array[1..3] of Integer;
+Var
+	temp : indef;
+	pote : arr;
+	num:integer;
+	op:integer;
+procedure pot(num:Integer);
+	var
+		i:integer;
+		aux:Integer;
+		arg:Boolean;
+	Begin
+	pote[1]:= 2;
+	pote[2]:= 3;
+	pote[3]:= 5;
+		i:=1;
+		arg:=true;
+	repeat
+			aux:=pote[i];
+				Repeat
+					Begin
+						aux:= aux*pote[i];
+						if((aux=num))Then Begin arg:=False end;
+					End;
+				Until((arg=false)or(aux>num));
+				if ((arg=true)and(aux>num)) then Begin i:=i+1; end;
+				if (arg=false) then
+					Begin
+						WriteLn('Potencias previas al numero introducido:');
+							aux:=pote[i];
+							Repeat
+								WriteLn(aux);
+								aux:= aux*pote[i];
+								if(aux=num) then Begin WriteLn(num); end;
+							Until(aux=num);
+					End;
+	until((aux=num) or (i=4));
+	if (arg=true) Then
+		Begin
+				WriteLn('El numero introducido no es potencia del 2, 3 ni 5.')
+		End;
+	end;
+
+Begin
+		n:=1;
+		Repeat //Este repeat se encarga de dar la opcion de reiniciar el programa y usarlo denuevo.
+				WriteLn('Introduzca el valor a comprobar:');
+				Readln(num);
+				pot(num);
+				Repeat
+					Begin
+						WriteLn('¿Desea comprobar otro conjunto de numeros?');
+						WriteLn('1 --> sí y 2 --> no');
+						Readln(op);
+							if((op<>1) and (op<>2))then
+								Begin
+									WriteLn('Valor invalido');
+								End;
+					End;
+				Until((op=2) or (op=1));
+			Until(op=2);
+		WriteLn('Hasta luego!');
+end.
