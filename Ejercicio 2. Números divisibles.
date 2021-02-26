@@ -1,0 +1,82 @@
+Program divisible;
+uses Crt;
+	Const
+   blue = 1;
+   green = 2;
+   red = 4;
+   brown = 6;
+   white = 7;
+   yellow = 14;
+	Var
+		num:Integer;
+		op:Integer;
+
+	Procedure divs(num:Integer);
+	Var
+		x:Boolean;
+		Begin
+		x:=true;
+			if ((num mod 13)=0)Then
+				Begin
+					TextColor(brown);
+					WriteLn(num);
+					x:=false;
+					TextColor(white);
+				End;
+			if ((num mod 7)=0)Then
+				Begin
+					TextColor(green);
+					WriteLn(num);
+					x:=false;
+					TextColor(white);
+				End;
+			if ((num mod 5)=0)Then
+				Begin
+					TextColor(red);
+					WriteLn(num);
+					x:=false;
+					TextColor(white);
+				End;
+			if ((num mod 3)=0)Then
+				Begin
+					TextColor(blue);
+					WriteLn(num);
+					x:=false;
+					TextColor(white);
+				End;
+			if ((num mod 2)=0)Then
+				Begin
+					TextColor(yellow);
+					WriteLn(num);
+					x:=false;
+					TextColor(white);
+				End;
+			if (x=true)Then
+				Begin
+					TextColor(white);
+					WriteLn(num);
+				End;
+		End;
+Begin
+Begin
+	Repeat
+		Begin
+			WriteLn('introduzca el numero entero a dividir.');
+			Readln(num);
+			divs(num);
+			Repeat
+				Begin
+					WriteLn('¿Desea comprobar otro numero?');
+					WriteLn('1 --> sí y 2 --> no');
+					Readln(op);
+						if((op<>1) and (op<>2))then
+							Begin
+								WriteLn('Valor invalido');
+							End;
+				End;
+			Until((op=2) or (op=1));
+		End;
+	Until(op=2);
+	WriteLn('Hasta luego!');
+end;
+End.
