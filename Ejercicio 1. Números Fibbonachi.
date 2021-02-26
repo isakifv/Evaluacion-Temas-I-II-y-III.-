@@ -1,0 +1,58 @@
+Program fibonnachi;
+uses Crt;
+var
+num:Integer;
+op:integer;
+
+		Procedure fibbo;
+		Var
+			a,b,c:integer;
+			arg:Boolean;
+		Begin
+					arg:=True;
+					WriteLn('Verificador de numeros Fibbonachi.');
+					WriteLn('Introduzca el número a verificar');
+					Readln(num);
+					a:=0;
+				b:=1;
+				While (arg=true) Do
+					Begin
+						c:=a+b;
+									if(num=c)then
+										Begin
+											WriteLn(num,' si es un numero perteneciente a la serie Fibbonachi');
+											arg:=false;
+										End;
+									if(num<>c)then
+										Begin
+											WriteLn(c);
+											a:=b;
+											b:=c;
+										End;
+							if(b>num)Then
+								Begin
+									arg:=false;
+									WriteLn('El numero ',num,' no pertenece a la serie Fibbonachi.')
+								End;
+					End;
+		End;
+
+Begin
+	Repeat
+		Begin
+			fibbo;
+			Repeat
+				Begin
+					WriteLn('¿Desea comprobar otro numero?');
+					WriteLn('1 --> sí y 2 --> no');
+					Readln(op);
+						if((op<>1) and (op<>2))then
+							Begin
+								WriteLn('Valor invalido');
+							End;
+				End;
+			Until((op=2) or (op=1));
+		End;
+	Until(op=2);
+	WriteLn('Hasta luego!');
+end.
