@@ -1,0 +1,68 @@
+program comp;
+		uses crt;
+			Const
+				max=4;
+			type
+				arreglo = Array[1..max] of Integer;
+			Var
+				num:arreglo;
+				op:integer;
+				i:integer;
+				//--------------------------------- Procedimiento mostrar. Se ecarga de mostrar el valor mas alto y el mas bajo del arreglo.------------------------//
+				procedure mostrar(num:arreglo);
+				Begin
+							WriteLn('El valor mas alto es: ',num[max]);
+							WriteLn('El valor mas bajo es: ',num[1]);
+				end;
+					 //---------------------------------------- Funcion organizar. Se ecarga de ordenar los elementos del arreglo.------------------------------------//
+				Function organizar(num:arreglo):arreglo;
+					var
+						i:integer;
+						q:integer;
+						x:Integer;
+				Begin
+					for i := 1 to max do
+					begin
+				        for q := i+1 to max do
+								begin
+				            	if (num[q] < num[i]) then
+											begin
+					                x := num[i];
+					                num[i] := num[q];
+					                num[q] := x;
+					            end;
+				        end;
+			    end;
+					exit(num);
+				end;
+
+				Begin
+						Repeat //Este repeat se encarga de dar la opcion de reiniciar el programa y organizar otros numeros.
+							Begin
+								//---------------------------------------- Este segmento se encarga de introducir los valores en el arreglo -------------------------------------//
+									Begin
+										for i:=1 to max Do
+											Begin
+												WriteLn('Introduzca el valor N°',i,'.');
+												Readln(num[i]);
+											End;
+									end;
+								//-----------------------------------------------------------------------------------------------------------------------------------------------//
+								num:=organizar(num);
+								WriteLn('Mayor y menor valor del conjunto.');
+								mostrar(num);
+								Repeat
+									Begin
+										WriteLn('¿Desea comprobar otro conjunto de numeros?');
+										WriteLn('1 --> sí y 2 --> no');
+										Readln(op);
+											if((op<>1) and (op<>2))then
+												Begin
+													WriteLn('Valor invalido');
+												End;
+									End;
+								Until((op=2) or (op=1));
+							End;
+							Until(op=2);
+						WriteLn('Hasta luego!');
+				end.
